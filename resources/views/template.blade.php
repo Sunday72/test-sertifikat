@@ -55,19 +55,19 @@
     {{-- NAMA --}}
     <div class="text-center">
         <p class="mt-3" style="color: #1E1E1E;">diberikan kepada :</p>
-        <span id="nama" style="font-size: 50px;">Muhammad Aldi Tri Setiawan</span>
+        <span id="nama" style="font-size: 50px;">{{ $data->student->nama_lengkap }}</span>
     </div>
     <div style="width: 700px; border-top: 2px solid #1E1E1E; margin: 16px auto;">
         <div class="mt-2">
-            <span>SMK Negeri 12 Jakarta</span>
-            <span class="float-end">Rekayasa Perangkat Lunak</span>
+            <span>{{ $data->student->sekolah }}</span>
+            <span class="float-end">{{ $data->student->jurusan }}</span>
         </div>
     </div>
 
     {{-- PREDIKAT --}}
     <div class="text-center mt-5">
         <p>Telah melaksanakan Peraktek Kerja Lapangan di UPT TIK Universitas Negeri Jakarta dengan predikat <br>
-            <b class="mt-2 d-block">Sangat Baik</b>
+            <b class="mt-2 d-block">{{ $data->predikat }}</b>
         </p>
     </div>
 
@@ -109,18 +109,18 @@
                 <tr>
                     <td>1</td>
                     <td>Ketepatan Waktu</td>
-                    <th>95</th>
+                    <th>{{ $data->ketepatan_waktu }}</th>
                     <th>A</th>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Tanggung Jawab Terhadap Tugas</td>
-                    <th>95</th>
+                    <th>{{ $data->tanggung_jawab }}</th>
                     <th>A</th>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>Kehadiran/Absensi</td>
+                    <td>{{ $data->kehadiran }}</td>
                     <th>95</th>
                     <th>A</th>
                 </tr>
@@ -132,13 +132,13 @@
                 <tr>
                     <td>1</td>
                     <td>Keterampilan Kerja</td>
-                    <th>95</th>
+                    <th>{{ $data->keterampilan_kerja }}</th>
                     <th>A</th>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Kualitas Hasil Kerja</td>
-                    <th>95</th>
+                    <th>{{ $data->kualitas_hasil_kerja }}</th>
                     <th>A</th>
                 </tr>
                 {{-- C --}}
@@ -149,13 +149,13 @@
                 <tr>
                     <td>1</td>
                     <td>Kemampuan Berkomunikasi</td>
-                    <th>95</th>
+                    <th>{{ $data->komunikasi }}</th>
                     <th>A</th>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Kerja Sama</td>
-                    <th>95</th>
+                    <th>{{ $data->kerja_sama }}</th>
                     <th>A</th>
                 </tr>
                 {{-- D --}}
@@ -166,13 +166,13 @@
                 <tr>
                     <td>1</td>
                     <td>Memiliki Rasa Percaya Diri</td>
-                    <th>95</th>
+                    <th>{{ $data->percaya_diri }}</th>
                     <th>A</th>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Penampilan/Kerapihan</td>
-                    <th>95</th>
+                    <th>{{ $data->penampilan }}</th>
                     <th>A</th>
                 </tr>
             </tbody>
@@ -189,8 +189,8 @@
                     </thead>
                     <tbody style="background: #eaeaea">
                         <tr>
-                            <td>836</td>
-                            <td>92.88</td>
+                            <td>{{ $sumNilai }}</td>
+                            <td>{{ $average }}</td>
                             <th>A</th>
                         </tr>
                     </tbody>
