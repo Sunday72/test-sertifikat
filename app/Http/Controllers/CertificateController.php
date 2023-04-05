@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreCertificateRequest;
 use App\Http\Requests\UpdateCertificateRequest;
+use Carbon\Carbon;
 
 class CertificateController extends Controller
 {
@@ -72,7 +73,9 @@ class CertificateController extends Controller
         $average = $sumNilai / 9;
         $average = round($average, 2);
 
-        $pdf = Pdf::loadView('template', compact('data', 'sumNilai', 'average'));
+        $created_at = Carbon::parse($data->created_at)->format('d F Y');
+
+        $pdf = Pdf::loadView('template', compact('data', 'sumNilai', 'average', 'created_at'));
         $pdf->set_paper('letter', 'landscape');
         return $pdf->stream();
     }

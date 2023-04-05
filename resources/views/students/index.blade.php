@@ -30,6 +30,7 @@
                 <th>Jurusan</th>
                 <th>tgl selesai</th>
                 <th>progres</th>
+                <th>Certificate</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +42,9 @@
                     <td>{{ $student->jurusan }}</td>
                     <td>{{ $student->tgl_selesai }}</td>
                     <td>{{ $student->progres }}</td>
+                    <td>
+                        <a href="{{ route('certificates.show', $student->certificate->id) }}" {{ $student->progres == 'active' ? disabled : ''}}>Lihat</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

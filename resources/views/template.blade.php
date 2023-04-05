@@ -1,3 +1,25 @@
+@php
+    function huruf($key, $id)
+    {
+        $data = App\Models\Certificate::with('student')
+            ->where('id', $id)
+            ->first();
+        
+        $huruf = '';
+
+        if ($data->$key >= 80) {
+            $huruf = 'A';
+            return $huruf;
+        } elseif ($data->$key >= 68 and $data->$key < 80) {
+            $huruf = 'B';
+            return $huruf;
+        } elseif ($data->$key < 68) {
+            $huruf = 'C';
+            return $huruf;
+        }
+    }
+@endphp
+
 <!doctype html>
 <html lang="en">
 
@@ -74,12 +96,27 @@
 
     {{-- TTD --}}
     <div class="text-center mt-5">
-        <span class="d-block">Jakarta, 28 Maret 2023</span>
+        <span class="d-block">Jakarta, {{ $created_at }}</span>
         <span class="d-block">Kepala UPT TIK,</span>
         <img src="img/ttd.png" alt="TTD" height="100px">
         <span class="d-block">Dr. Uwes Anis Cheruman, M.Pd</span>
         <span style="color: #505050">NIP.197403112002121001</span>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -110,19 +147,19 @@
                     <td>1</td>
                     <td>Ketepatan Waktu</td>
                     <th>{{ $data->ketepatan_waktu }}</th>
-                    <th>A</th>
+                    <th>{{ huruf('ketepatan_waktu', $data->id) }}</th>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Tanggung Jawab Terhadap Tugas</td>
                     <th>{{ $data->tanggung_jawab }}</th>
-                    <th>A</th>
+                    <th>{{ huruf('tanggung_jawab', $data->id) }}</th>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>{{ $data->kehadiran }}</td>
-                    <th>95</th>
-                    <th>A</th>
+                    <td>Kehadiran/Absensi</td>
+                    <th>{{ $data->kehadiran }}</th>
+                    <th>{{ huruf('kehadiran', $data->id) }}</th>
                 </tr>
                 {{-- B --}}
                 <tr>
@@ -133,13 +170,13 @@
                     <td>1</td>
                     <td>Keterampilan Kerja</td>
                     <th>{{ $data->keterampilan_kerja }}</th>
-                    <th>A</th>
+                    <th>{{ huruf('keterampilan_kerja', $data->id) }}</th>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Kualitas Hasil Kerja</td>
                     <th>{{ $data->kualitas_hasil_kerja }}</th>
-                    <th>A</th>
+                    <th>{{ huruf('kualitas_hasil_kerja', $data->id) }}</th>
                 </tr>
                 {{-- C --}}
                 <tr>
@@ -150,13 +187,13 @@
                     <td>1</td>
                     <td>Kemampuan Berkomunikasi</td>
                     <th>{{ $data->komunikasi }}</th>
-                    <th>A</th>
+                    <th>{{ huruf('komunikasi', $data->id) }}</th>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Kerja Sama</td>
                     <th>{{ $data->kerja_sama }}</th>
-                    <th>A</th>
+                    <th>{{ huruf('kerja_sama', $data->id) }}</th>
                 </tr>
                 {{-- D --}}
                 <tr>
@@ -167,13 +204,13 @@
                     <td>1</td>
                     <td>Memiliki Rasa Percaya Diri</td>
                     <th>{{ $data->percaya_diri }}</th>
-                    <th>A</th>
+                    <th>{{ huruf('percaya_diri', $data->id) }}</th>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Penampilan/Kerapihan</td>
                     <th>{{ $data->penampilan }}</th>
-                    <th>A</th>
+                    <th>{{ huruf('penampilan', $data->id) }}</th>
                 </tr>
             </tbody>
         </table>
@@ -191,7 +228,15 @@
                         <tr>
                             <td>{{ $sumNilai }}</td>
                             <td>{{ $average }}</td>
-                            <th>A</th>
+                            <th>
+                                @if ($average >= 80)
+                                    A
+                                @elseif ($average < 80 AND $average >= 68)
+                                    B
+                                @else
+                                    C
+                                @endif
+                            </th>
                         </tr>
                     </tbody>
                 </table>

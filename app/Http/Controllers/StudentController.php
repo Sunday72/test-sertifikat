@@ -14,7 +14,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = DB::table('students')->get();
+        $students = Student::with('certificate')->get();
 
         return view('students.index', compact('students'));
     }
